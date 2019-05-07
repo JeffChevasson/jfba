@@ -1,3 +1,5 @@
+
+
 <?php 
 
 require_once ('model/PostManager.php');
@@ -34,8 +36,8 @@ function addComment($postId, $author, $comment)
 
 function add_new_content($title, $content)
 {
-    $commentManager = new CommentManager();
-    $addcontents = $commentManager->insertpost($title, $content);
+    $postManager = new PostManager();
+    $addcontents = $postManager->insertpost($title, $content);
     
     if ($addcontents === false) {
         die('Impossible d\'ajouter l\'article !');
@@ -43,6 +45,9 @@ function add_new_content($title, $content)
         header('Location: index.php?action=listPosts');
     }
 }
+
+$postManager = new PostManager();
+    $addcontents = $postManager->insertpost($title, $content);
 
 function connectionMember()
 {

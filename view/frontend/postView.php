@@ -5,27 +5,28 @@
 
 <div class=container>
 
-    <p><a href="index.php">Retour à la liste des billets</a></p>
+    <p>
+        <a href="index.php">Retour à la liste des billets</a>
+    </p>
 </div>
 <span class="border border-dark">
-<div class="col">    
-<div class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-secondary">édition</button>
-  <button type="button" class="btn btn-secondary">supression</button>
-</div>
-            <h2>Mes contributions:</h2>
-            <p>
-
-            <h3>
-                <?= $post['title'] ?><p>     
+    <div class="col">
+        <h2>My Posts:</h2>
+        <a href="index.php?action=editshow&id=<?= $_GET['id'] ?>">modifier mon
+            article</a>
+        <p>
+        
+        
+        <h3>
+                <?= $post['title'] ?>
                 <em>le <?= $post['creation_date_fr'] ?></em>
-            </h3>
 
-            <p>
+        </h3>
+
+        <p>
 
             <?= nl2br($post['content']) ?>
-            </div>
-            </p>
+            
 
 </div>
 </span>
@@ -33,18 +34,19 @@
 <h2>Commentaires:</h2>
 
 <?php
-while ($comment = $comments->fetch())
-{
-?>
-    <p><strong><?= ($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-    <p><?= nl2br($comment['comment']) ?></p>
+while ($comment = $comments->fetch()) {
+    ?>
+<p>
+    <strong><?= ($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
+<p><?= nl2br($comment['comment']) ?></p>
 <?php
 }
 ?>
-<form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+<form action="index.php?action=addComment&amp;id=<?= $_GET['id'] ?>"
+    method="post">
     <div>
-        <label for="author">Auteur</label><br />
-        <input type="text" id="author" name="author" />
+        <label for="author">Auteur</label><br /> <input type="text"
+            id="author" name="author" />
     </div>
     <div>
         <label for="comment">Commentaire</label><br />
