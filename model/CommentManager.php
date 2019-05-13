@@ -31,6 +31,8 @@ class CommentManager extends Manager
             throw new Exception('les informations reçues ne permettent pas de prendre en compte le commentaire');
         }
     }
+
+    }
     public function getComments($postId)
 	{
         $db = $this->dbConnect();

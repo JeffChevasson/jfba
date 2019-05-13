@@ -31,7 +31,7 @@ switch ($action) {
         break;
     
   case 'editPost':
-        editPost($_GET['id'],$_POST['title'],$_POST['content']);
+        editPost($_GET['id']);
         break;
         
     case 'editshow':

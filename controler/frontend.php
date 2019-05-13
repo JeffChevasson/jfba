@@ -1,24 +1,24 @@
-
-
 <?php 
-
 require_once ('model/PostManager.php');
 require ('model/CommentManager.php');
 require_once ('model/MembersManager.php');
 require ('model/function.php');
+
 function listPosts()
 {
     $postsManager = new PostManager();
     $posts = $postsManager->getPosts();
     require ('view/frontend/listPostsView.php');
 }
+
 function post()
+
 {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
     $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
-    
+
     require ('view/frontend/postView.php');
 }
 
@@ -46,8 +46,27 @@ function add_new_content($title, $content)
     }
 }
 
-$postManager = new PostManager();
-    $addcontents = $postManager->insertpost($title, $content);
+function editposts($id)
+{
+
+    $postManager = new PostManager();
+    $postedits = $postManager->editPosts($id);
+    var_dump($postedits);die;
+    if ($postedits === false) {
+        die('Impossible d\'ajouter l\'article !');
+    } else {
+        echo "ca fonctionne";
+    }
+}
+
+function editshow($id)
+{
+    $postmanager = new PostManager();
+    $currentPost = $postmanager->getPost($id);
+    
+    require ('view/frontend/traitement_text.php');
+    
+}
 
 function connectionMember()
 {
