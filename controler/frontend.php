@@ -46,16 +46,16 @@ function add_new_content($title, $content)
     }
 }
 
-function editposts($id)
+function postEdition($id, $title, $content)
 {
 
     $postManager = new PostManager();
-    $postedits = $postManager->editPosts($id);
-    var_dump($postedits);die;
-    if ($postedits === false) {
+    $postEdition = $postManager->editPosts($id,$title,$content);
+    var_dump($postEdition);die;
+    if ($postEdition === false) {
         die('Impossible d\'ajouter l\'article !');
     } else {
-        echo "ca fonctionne";
+       header('Location: index.php?action=listPosts');
     }
 }
 
