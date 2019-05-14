@@ -12,8 +12,7 @@
       <title>le blog de l'écrivain</title>
 
       <!-- Bootstrap core CSS -->
-      <link href="public/vendor/bootstrap/css/bootstrap.min.css"
-        rel="stylesheet">
+     <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
       <!-- Custom fonts for this template -->
       <link href="public/vendor/font-awesome/css/font-awesome.min.css"
@@ -47,7 +46,7 @@
   <nav class="navbar navbar-expand-lg navbar-light fixed-top"
     id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="index.php">Start Bootstrap</a>
+      <a class="navbar-brand" href="index.php">Page d'accueil</a>
       <button class="navbar-toggler navbar-toggler-right" type="button"
         data-toggle="collapse" data-target="#navbarResponsive"
         aria-controls="navbarResponsive" aria-expanded="false"
@@ -59,11 +58,8 @@
           <li class="nav-item"><a class="nav-link" href="index.html">A propos
               de l'auteur</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">évènements</a>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="post.html">dernier
-              article</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Me
-              contacter</a></li>
+            <!--<li class="nav-item"><a class="nav-link" href="view/frontend/additionalPostView.php">ajouter un article</a></li> -->
+          <li class="nav-item"><a href="index.php?action=displaylogin">se connecter</a></li>
         </ul>
       </div>
     </div>
