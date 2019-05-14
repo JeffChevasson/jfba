@@ -18,6 +18,21 @@ switch ($action) {
         post();
         break;
     
+    case 'editshow':
+        editshow($_GET['id']);
+    
+    case 'add_new_content':
+        add_new_content($_POST['title'], $_POST['content']);
+        break;
+    
+    case 'postEdition':
+        postEdition($_GET['id'], $_POST['title'], $_POST['content']);
+        break;
+        
+    case 'postSupression':
+        postSupression($_GET['id']);
+        break;
+        
     case 'displaylogin':
         displaylogin();
         break;
@@ -25,18 +40,7 @@ switch ($action) {
     case 'connectionMember':
         connectionMember();
         break;
-    
-    case 'add_new_content':
-    add_new_content($_POST['title'], $_POST['content']);
-        break;
-    
-  case 'postEdition':
-        postEdition($_GET['id'], $_POST['title'], $_POST['content']);
-        break;
-        
-    case 'editshow':
-        editshow($_GET['id']);
-        break;
+
     default:
         listPosts();
         break;

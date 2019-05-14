@@ -40,9 +40,9 @@ public function getPosts()
         $db = $this->dbconnect();
         $inputpost = $db->prepare('UPDATE posts SET title=:title, content=:content WHERE id=:id ');
         $reqs = $inputpost->execute(array(
-            'id'=>$id,
-            'title'=>$title,
-            'content'=>$content
+            'id' => $id,
+            'title' => $title,
+            'content' => $content
         ));
         return $reqs;
        
