@@ -8,8 +8,7 @@ function listPosts()
 {
     $postsManager = new PostManager();
     $posts = $postsManager->getPosts();
-    //require ('view/frontend/listPostsView.php');
-    require ('view/backend/gestionBillet.php');
+    require ('view/frontend/listPostsView.php');
 }
 
 function post()
@@ -21,6 +20,17 @@ function post()
     $comments = $commentManager->getComments($_GET['id']);
 
     require ('view/frontend/postView.php');
+}
+
+function postAdmin()
+{
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
+    
+    $post = $postManager->getPost($_GET['id']);
+    $comments = $commentManager->getComments($_GET['id']);
+    
+    require ('view/backend/commentGestionView.php');
 }
 
 function addComment($postId, $author, $comment)
@@ -43,7 +53,7 @@ function add_new_content($title, $content)
     if ($addcontents === false) {
         die('Impossible d\'ajouter l\'article !');
     } else {
-        header('Location: view/backend/gestionBillet.php');
+        header('Location: index.php?action=gestionPosts');
     }
 }
 
@@ -56,7 +66,7 @@ function postEdition($id, $title, $content)
     if ($postEdition === false) {
         die('Impossible d\'ajouter l\'article !');
     } else {
-       header('Location: index.php?action=listPosts');
+       header('Location: index.php?action=gestionPosts');
     }
 }
 
@@ -73,18 +83,42 @@ function postSupression($id)
 {
     $postmanager = new PostManager();
     $supressionpost = $postmanager->supressionPosts($id);
-    header('Location: index.php?action=listPosts');
-    
+    header('Location: index.php?action=gestionPosts');
 }
+
+/*
+ * function editShowComment($id)
+ * {
+ * $postmanager = new PostManager();
+ * $addcomment= $postmanager-> getComments($postId);
+ * require ('')
+ * }
+ */
 
 function displaylogin()
 {
     require ('view/backend/loginView.php');
 }
 
-function connectionMember()
+function connectionMember($username, $pass)
 {
     $oMembersM = new MembersManager();
     
-    $vRes = $oMembersM->sessionconect();
+     $checkConnection = $oMembersM->connect($username, $pass);
+     }
+
+     if ($checkConnection == TRUE) {
+        header('Location:index.php?action=gestionPosts');
+    } 
+
+    else {
+        echo "Votre mot de passe ou votre identifiant n'est pas correct. Veuillez vérifier vos informations";
+    }
+     
+
+function gestionPosts()
+{
+   $postsManager = new PostManager();
+   $listcourent = $postsManager->getPosts();
+    require ('view/backend/gestionBillet.php');
 }
