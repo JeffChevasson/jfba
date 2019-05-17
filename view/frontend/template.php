@@ -12,7 +12,8 @@
       <title>le blog de l'écrivain</title>
 
       <!-- Bootstrap core CSS -->
-     <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+     <link href="public/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet">
 
       <!-- Custom fonts for this template -->
       <link href="public/vendor/font-awesome/css/font-awesome.min.css"
@@ -59,7 +60,23 @@
               de l'auteur</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">évènements</a>
             <!--<li class="nav-item"><a class="nav-link" href="view/frontend/additionalPostView.php">ajouter un article</a></li> -->
-          <li class="nav-item"><a href="index.php?action=displaylogin">se connecter</a></li>
+          <li class="nav-item">           
+            <?php 
+            if ( MembersManager::checkIfSessionExists() == true ) {
+                ?>
+                <a href="index.php?action=gestionPosts">
+                  Administration
+                </a>
+                <?php 
+            } else {
+                ?>
+                <a href="index.php?action=displaylogin">
+                  Se connecter
+                </a>
+                <?php
+            }
+            ?>            
+          </li>     
         </ul>
       </div>
     </div>
@@ -88,11 +105,6 @@
         <div class="post-preview">
         <?php echo $content;?>
         </div>
-        
-        -- Pager -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">Anciennes publications &rarr;</a>
-        </div>
       </div>
     
   </div>
@@ -101,36 +113,22 @@
 
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="public/vendor/jquery/jquery.min.js"></script>
+  <script src="public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="js/clean-blog.min.js"></script>
+  <script src="public/js/clean-blog.min.js"></script>
 
 </body>
 <!-- Footer -->
   <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <ul class="list-inline text-center">
-            <li class="list-inline-item"><a href="#"> <span
-                class="fa-stack fa-lg"> <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-              </span>
-            </a></li>
-            <li class="list-inline-item"><a href="#"> <span
-                class="fa-stack fa-lg"> <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-              </span>
-            </a></li>
-            <li class="list-inline-item"><a href="#"> <span
-                class="fa-stack fa-lg"> <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-              </span>
-            </a></li>
-          </ul>
-        
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; Jean Forteroche</p>
         </div>
       </div>
 
