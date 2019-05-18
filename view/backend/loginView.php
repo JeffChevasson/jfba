@@ -4,7 +4,8 @@
 	<div class="container-login100"
 		style="background-image: url('public/login/images/bg-01.jpg');">
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-			<form class="login100-form validate-form" action="index.php?action=connectionMember" method="post">
+			<form class="login100-form validate-form"
+				action="index.php?action=connectionMember" method="post">
 				<span class="login100-form-title p-b-49"> Connection admin </span>
 
 				<div class="wrap-input100 validate-input m-b-23"
@@ -24,7 +25,7 @@
 				</div>
 
 				<div class="text-right p-t-8 p-b-31">
-					<a href="#"> mot de passe oublié </a><br>
+
 					<a href="index.php?action=listPosts">retour à la page d'acceuil</a>
 				</div>
 
@@ -43,4 +44,4 @@
 <div id="dropDownSelect1"></div>
 
 <?php $contentForm = ob_get_clean(); ?>
-<?php require('templateLogin.php'); ?> 
+<?php require('templateLogin.php'); ?>

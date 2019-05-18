@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
 <tbody>
-<tr>
+	<tr>
 		<td align="center"><a class="btn btn-default"
 			href="index.php?action=editshow&id=<?= $_GET['id']; ?>"><em
 				class="fa fa-pencil"></em></a> <a class="btn btn-danger"
@@ -14,14 +14,18 @@
 	</tr>
 </tbody>
 
-<?php $adminComment = ob_get_clean();
+<?php $adminComment = ob_get_clean(); ?>
 
-ob_start();
 
 <?php
-while ($comment = $comments->fetch(PDO::FETCH_ASSOC)) { ?>
+
+ob_start();
+while ($comment = $comments->fetch(PDO::FETCH_ASSOC)) {
+    
+    ?>
+
 <tbody>
-<tr>
+	<tr>
 		<td align="center"><a class="btn btn-default"
 			href="index.php?action=editShowComment&id=<?= $_GET['id']=$comment['id']; ?>"><em
 				class="fa fa-pencil"></em></a> <a class="btn btn-danger"
@@ -33,11 +37,14 @@ while ($comment = $comments->fetch(PDO::FETCH_ASSOC)) { ?>
 		<td><?= nl2br($comment['comment']) ?></td>
 	</tr>
 </tbody>
-
 <?php
-
 }
+?>
 
-$adminall = ob_get_clean(); 
+<?php $adminall = ob_get_clean(); ?>
 
-require('templateCommentGestionView.php'); ?>
+<?php require('templateCommentGestionView.php'); ?>
+
+
+
+
