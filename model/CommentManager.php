@@ -134,6 +134,9 @@ class CommentManager extends Manager
     {
         if (empty($_POST['author']) && empty($_POST['comment'])) {
             die('Impossible d\'ajouter le commentaire !');
+        } else {
+            
+            return TRUE;
         } 
     }
 }

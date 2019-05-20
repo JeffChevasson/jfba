@@ -3,7 +3,7 @@
 session_start();
 
 // Definition du path absolu
-define("ABSOLUTE_PATH", dirname(__FILE__));
+define('ABSOLUTE_PATH', dirname(__FILE__));
 
 // Autoloader, chargement automatique des classes
 spl_autoload_register('custom_autoloader');
@@ -16,8 +16,6 @@ function custom_autoloader($className)
         require_once $filename;
     }
 }
-
-
 
 require ('controler/frontend.php');
 require ('controler/backend.php');

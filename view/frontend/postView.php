@@ -92,11 +92,11 @@ while ($comment = $comments->fetch()) {
 <?php
 }
 ?>
-<form action="index.php?action=addComment&id=<?= $_GET['id'] ?>"
-		name="formComment" method="post">
+<form action="index.php?action=addComment&id=<?= $_GET['id'] ?>" name="formComment" method="post">
+
 		<div>
 			<label for="author">Auteur</label><br /> <input type="text"
-				id="author" name="author" required />
+				id="author" name="author" required/>
 		</div>
 		<div>
 			<label for="comment">Commentaire</label><br />

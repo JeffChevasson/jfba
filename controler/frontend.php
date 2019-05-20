@@ -4,7 +4,8 @@ function listPosts()
 {
     $postsManager = new PostManager();
     $posts = $postsManager->getPosts();
-    require ('view/frontend/listPostsView.php');
+
+    require('view/frontend/listPostsView.php');
 }
 
 function post()
@@ -15,7 +16,7 @@ function post()
     $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
     
-    require ('view/frontend/postView.php');
+    require('view/frontend/postView.php');
 }
 
 function addComment($postId, $author, $comment)
@@ -29,7 +30,7 @@ function addComment($postId, $author, $comment)
 
 function displaylogin()
 {
-    require ('view/backend/loginView.php');
+    require('view/backend/loginView.php');
 }
 
 

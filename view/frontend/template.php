@@ -26,7 +26,6 @@
 
 <!-- Custom styles for this template -->
 <link href="public/css/clean-blog.min.css" rel="stylesheet">
-    
 
 </head>
 
@@ -112,8 +111,7 @@
 				<ul class="list-inline text-center">
 
 				</ul>
-				<p class="copyright text-muted">Copyright &copy; Merveilleux site
-					2018</p>
+				<p class="copyright text-muted">Copyright &copy; Blog de Jean Forteroche</p>
 			</div>
 		</div>
 	</div>

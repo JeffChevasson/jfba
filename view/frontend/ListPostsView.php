@@ -7,12 +7,11 @@ while ($data = $posts->fetch()) {
 
 
 <div class="container_listPost">
-
-	<a href="index.php?action=post&id= <?= $data['id'] ?>">
+<a href="index.php?action=post&id= <?= $data['id'] ?>">
 
 		<h2 class="post-title"><?= htmlspecialchars($data['title']) ?></h2>
 		<br>
-		
+
 		<class="post-subtitle"><?php
     // limitation du nombre de caractères dans la page d'acceuil
     if (strlen($data['content']) > 50) {
@@ -26,7 +25,6 @@ while ($data = $posts->fetch()) {
 						publié le <?= $data['creation_date_fr']?>
 	</p>
 	<hr>
-
 </div>
 <?php
 }
