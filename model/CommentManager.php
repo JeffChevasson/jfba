@@ -13,13 +13,15 @@ class CommentManager extends Manager
      */
     public function postComment($postId, $author, $comment)
     {
-        $db = $this->dbConnect();
-        $Comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(:post_id,:author,:comment, NOW())');
-        $affectedLines = $Comments->execute(array(
-            'post_id' => $_GET['id'],
-            'author' => $_POST['author'],
-            'comment' => $_POST['comment']
-        ));
+        $now = new DateTime();
+        $data = array(
+            'post_id' => $postId,
+            'author' => $author,
+            'comment' => $comment,
+            'comment_date' => $now->format("Y-m-d H:i:s")
+        );
+        $comment = new Comment();
+        $affectedLines = $comment->save($data);
         
         return $affectedLines;
     }
@@ -31,12 +33,13 @@ class CommentManager extends Manager
      */
     public function getComments($postId)
     {
-        $db = $this->dbConnect();
+        $comments = EntityManager::find(Comment::class, array("post_id" => $postId));
+        /*$db = $this->dbConnect();
         $comments = $db->prepare('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
         $comments->execute(array(
             $postId
         
-        ));
+        ));*/
         return $comments;
     }
 
@@ -47,7 +50,8 @@ class CommentManager extends Manager
      */
     public function getCom($id)
     {
-        $db = $this->dbConnect();
+        $comment = EntityManager::findOne(Comment::class, array("id" => $_GET["id"]));
+        /*$db = $this->dbConnect();
         $comments = $db->prepare('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE id =:id ');
         $comments->execute(array(
             'id' => $_GET['id']
@@ -55,7 +59,7 @@ class CommentManager extends Manager
         ));
         $comments->execute();
         
-        $comment = $comments->fetch(PDO::FETCH_ASSOC);
+        $comment = $comments->fetch(PDO::FETCH_ASSOC);*/
         return $comment;
     }
 

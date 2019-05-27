@@ -8,7 +8,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title><?php $title = $post['title']; ?></title>
+<title><?php $title = $post->getTitle(); ?></title>
 
 <!-- Bootstrap core CSS -->
 <link href="public/vendor/bootstrap/css/bootstrap.min.css"
@@ -57,10 +57,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-md-10 mx-auto">
-				<p><?= $post['title'] ?><br /> <em>a été publié le <?= $post['creation_date_fr'] ?></em>
+				<p><?= $post->getTitle() ?><br /> <em>a été publié le <?= $post->getCreationDate()->format("d/m/Y H:i:s"); ?></em>
 					<br />
 
-				<?= nl2br($post['content']) ?>
+				<?= nl2br($post->getContent()) ?>
 				
 				
 				
@@ -79,13 +79,11 @@
 	<hr>
 	<h2>Commentaires:</h2>
 
-<?php
-while ($comment = $comments->fetch()) {
-    ?>
+<?php foreach ($comments as $comment){ ?>
 
-		<strong><?= ($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?>
-	<p><?= nl2br($comment['comment']) ?><br /> <a
-			href="index.php?action=reportcomment&id=<?=$_GET['id']?>&repport=<?=$comment['id']?>"><button
+		<strong><?= ($comment->getAuthor()) ?></strong> le <?= $comment->getCommentDate()->format("d/m/Y H:i:s") ?>
+	<p><?= nl2br($comment->getComment()) ?><br /> <a
+			href="index.php?action=reportcomment&id=<?=$_GET['id']?>&repport=<?=$comment->getId()?>"><button
 				type="button" class="btn btn-danger">report</button></a>
 	</p>
 	
