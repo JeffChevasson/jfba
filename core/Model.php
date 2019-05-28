@@ -83,8 +83,9 @@ class Model{
     /**
      * Methode de suppression de notre objet
      */
-    public function delete(){
-
+    public function delete($objId){
+        $sql = "DELETE FROM ".$this->_tablename." WHERE ".$this->_primarykey."=".$objId;
+        return SQLConnection::getInstance()->query($sql);
     }
 
     /**

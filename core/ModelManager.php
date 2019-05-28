@@ -17,7 +17,17 @@ class ModelManager{
         if (count($listeEntites) > 0){
             return $listeEntites[0];
         }
-        return array();
+        return null;
+    }
+
+    public static function delete($class, array $criteria){
+        $listeEntites = self::find($class, $criteria);
+        foreach ($listeEntites as $entite){
+            $pkey = $entite->getPrimarykey();
+            $func = "get".ucfirst($pkey);
+            $entite->delete($entite->$func());
+        }
+        return null;
     }
 
     /**

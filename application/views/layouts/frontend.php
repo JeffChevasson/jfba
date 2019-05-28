@@ -26,26 +26,24 @@
 <!-- Navigation -->
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
-        <a class="navbar-brand" href="#">Accueil</a>
+        <a class="navbar-brand" href="/accueil/index">Accueil</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
-            <ul class="my-2 my-lg-0">
-                <li class="nav-item">
-                    <?php if (isset($_SESSION["username"])){ ?>
-                        <a class="nav-link" href="/admin">
-                            <i class="fa fa-fw fa-gears"></i> Administration
-                        </a>
-                    <?php }else{ ?>
-                        <a class="nav-link" href="/login">
-                            <i class="fa fa-fw fa-sign-in"></i> Se connecter
-                        </a>
-                    <?php }; ?>
-                </li>
-            </ul>
+            <?php if (isset($_SESSION["username"])){ ?>
+                <a class="btn btn-primary offset-10 mr-2" href="/admin">
+                    <i class="fa fa-gears"></i> Administration
+                </a>
+                <a class="btn btn-danger" href="/logout/index">
+                    <i class="fa fa-logout"></i> Déconnexion
+                </a>
+            <?php }else{ ?>
+                <a class="btn btn-primary offset-11 mr-2" href="/login/index">
+                    <i class="fa fa-fw fa-sign-in"></i> Se connecter
+                </a>
+            <?php }; ?>
         </div>
     </nav>
 </header>
@@ -53,9 +51,14 @@
 <main role="main" class="container-fluid">
     <div class="row">
         <div class="col-3">
-            <div class="jumbotron text-center">
-                <h1>Mon Blog</h1>
-                <p>La visite de l'imaginaire</p>
+            <div class="card">
+                <img class="card-img-top" src="/public/img/index-img.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h1 class="card-title text-center">Mon Blog</h1>
+                    <h2 class="card-text text-center text-muted">
+                        La visite de l'imaginaire
+                    </h2>
+                </div>
             </div>
         </div>
         <div class="col">
@@ -66,7 +69,7 @@
 
 <footer class="footer mt-5">
     <div class="container text-center">
-        <span class="text-muted">Copyright &copy&copy; Blog de Jean Forteroche</span>
+        <span class="text-muted">Copyright &copy; Blog de Jean Forteroche</span>
     </div>
 </footer>
 

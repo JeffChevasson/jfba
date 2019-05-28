@@ -1,4 +1,7 @@
 <?php
+// On démarre la session AVANT d'écrire du code HTML
+session_start();
+
 use core\Dispatcher;
 
 define('WEBROOT', str_replace("index.php", "", $_SERVER["SCRIPT_NAME"]));
