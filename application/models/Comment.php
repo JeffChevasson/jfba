@@ -1,6 +1,9 @@
 <?php
+namespace application\models;
 
-class Comment extends Entity{
+use core\Model;
+
+class Comment extends Model {
 
     protected $_tablename = "comments";
 
@@ -25,12 +28,12 @@ class Comment extends Entity{
     private $comment;
 
     /**
-     * @var DateTime
+     * @var \DateTime
      */
     private $commentDate;
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getCommentDate()
     {
@@ -38,12 +41,12 @@ class Comment extends Entity{
     }
 
     /**
-     * @param DateTime $commentDate
+     * @param \DateTime $commentDate
      * @return Comment
      */
     public function setCommentDate($commentDate)
     {
-        $this->commentDate = DateTime::createFromFormat("Y-m-d H:i:s", $commentDate);
+        $this->commentDate = \DateTime::createFromFormat("Y-m-d H:i:s", $commentDate);
         return $this;
     }
 

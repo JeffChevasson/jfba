@@ -1,4 +1,5 @@
 <?php
+namespace core;
 
 require_once "config/parametres.php";
 
@@ -22,7 +23,7 @@ class SQLConnection
      */
     private function __construct()
     {
-        $this->link = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+        $this->link = new \mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
     }
 
     /**
@@ -50,7 +51,6 @@ class SQLConnection
         if (($firstWord == "insert") || ($firstWord == "update")|| ($firstWord == "delete")){
             return $this->link->affected_rows;
         }
-
         $results_array = array();
         while ($row = $result->fetch_assoc()) {
             $results_array[] = $row;

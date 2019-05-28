@@ -1,6 +1,7 @@
 <?php
+namespace core;
 
-class EntityManager{
+class ModelManager{
 
     public static function find($class, array $criteria = array(), array $order = array()){
         $rows = self::select($class, $criteria, $order);
@@ -43,11 +44,11 @@ class EntityManager{
                 $func = "set$item";
                 $object->$func($value);
             }else{
-                if ($key == "PostId"){
+                /*if ($key == "PostId"){
                     $func = "setPost";
                     $value = self::findOne(Post::class, array("id" => $value));
                     $object->$func($value);
-                }
+                }*/
             }
         }
         return $object;
@@ -76,7 +77,8 @@ class EntityManager{
      * Methode de selection des objets de la table
      */
     private static function select($class, array $criteria, array $order){
-        $entity = new $class;
+        require($class.".php");
+        $entity = new $class();
         $cols = $entity->getTableCols();
         $selSQL = "select ".implode(",", $cols)." from ". $entity->getTableName();
         $where = array();

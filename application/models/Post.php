@@ -1,6 +1,9 @@
 <?php
+namespace application\models;
 
-class Post extends Entity {
+use core\Model;
+
+class Post extends Model {
 
     protected $_tablename = "posts";
 
@@ -20,12 +23,12 @@ class Post extends Entity {
     private $content;
 
     /**
-     * @var DateTime
+     * @var \DateTime
      */
     private $creationDate;
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getCreationDate()
     {
@@ -33,12 +36,12 @@ class Post extends Entity {
     }
 
     /**
-     * @param DateTime $creationDate
+     * @param \DateTime $creationDate
      * @return Post
      */
     public function setCreationDate($creationDate)
     {
-        $this->creationDate = DateTime::createFromFormat("Y-m-d H:i:s", $creationDate);
+        $this->creationDate = \DateTime::createFromFormat("Y-m-d H:i:s", $creationDate);
         return $this;
     }
 
@@ -96,4 +99,27 @@ class Post extends Entity {
         return $this;
     }
 
+    /**
+     * Methode pour obtenir un sous titre a partir du titre de l'article
+     */
+    public function getSubTitle(){
+        if (strlen($this->getContent()) > 50) {
+            $content = substr($this->getContent(), 0, 600);
+            $dernier_mot = strrpos($content, "");
+            return substr($content, 0, $dernier_mot);
+        }
+        return "";
+    }
+
+    /**
+     * Methode pour obtenir un résumé court de l'article
+     */
+    public function getSumary(){
+        if (strlen($this->getContent()) > 50) {
+            $content = substr($this->getContent(), 0, 600);
+            $dernier_mot = strrpos($content, "");
+            return substr($content, 0, $dernier_mot);
+        }
+        return $this->content;
+    }
 }

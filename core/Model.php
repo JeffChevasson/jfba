@@ -1,11 +1,12 @@
 <?php
+namespace core;
 
 /**
  * Class Entity : classe de base permettant de mettre en place la structure des modeles de notre site.
  * Dans cette classe on definirat entre autre les methodes permettant a l'entité de s'enregistrer en base, de se mettre
  * à jour ou alors de se supprimer
  */
-class Entity{
+class Model{
 
     /**
      * Le nom de la table associée a l'entité (requis)
