@@ -12,7 +12,7 @@ class AccueilController extends Controller {
     /**
      * Par default on affiche la liste des posts
      */
-    function index()
+    public function index()
     {
         $data["posts"] = ModelManager::find(Post::class);
         $this->set($data);

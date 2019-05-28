@@ -38,19 +38,24 @@ class Model{
      * Methode d'enregistrement en base de donnees de notre objet
      */
     public function save($data){
+        $cols = $this->getTableCols();
         $sql = "INSERT INTO ".$this->_tablename." (";
-        foreach ($data as $name=>$value ) {
-            $sql .="`$name`,";
+        foreach ($data as $name => $value ) {
+            // on n'enregistre pas une valeur dont la colonne n'existe pas en BDD
+            if (in_array($name, $cols)) {
+                $sql .= "`$name`,";
+            }
         }
 
         $sql = substr($sql, 0, strlen($sql)-1);
         $sql .= ") VALUES (";
         foreach ($data as $name => $value){
-            $value === null? $sql .= "null," : $sql .= "'$value',";
+            if (in_array($name, $cols)) {
+                $value === null ? $sql .= "null," : $sql .= "'$value',";
+            }
         }
         $sql = substr($sql, 0, strlen($sql)-1);
         $sql .= ");";
-        var_dump($sql);
 
         return SQLConnection::getInstance()->query($sql);
     }
@@ -59,7 +64,9 @@ class Model{
      * Methode de mise a jour de notre objet
      */
     public function update(){
-        $attrs = EntityManager::getAttributes(Entity::class);
+        $cols = $this->getTableCols();
+        $attrs = array();
+
         $primaryKeyColValue = $attrs[$this->_primarykey];
         unset($this->_primarykey);
 

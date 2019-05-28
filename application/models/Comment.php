@@ -116,7 +116,7 @@ class Comment extends Model {
      * @param Post $post
      * @return Comment
      */
-    public function setPost($post)
+    public function setPost(Post $post)
     {
         $this->post = $post;
         return $this;

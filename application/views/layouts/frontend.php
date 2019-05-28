@@ -36,7 +36,7 @@
             <ul class="my-2 my-lg-0">
                 <li class="nav-item">
                     <?php if (isset($_SESSION["username"])){ ?>
-                        <a class="nav-link" href="/admin/login">
+                        <a class="nav-link" href="/admin">
                             <i class="fa fa-fw fa-gears"></i> Administration
                         </a>
                     <?php }else{ ?>
@@ -48,28 +48,34 @@
             </ul>
         </div>
     </nav>
-
-    <div class=jumbotron>
-        <div class=container>
-            <h1>Titre</h1>
-            <p>Contenu du jumbotron</p>
-        </div>
-    </div>
-
 </header>
 
 <main role="main" class="container-fluid">
-    <?php echo $content_for_layout; ?>
+    <div class="row">
+        <div class="col-3">
+            <div class="jumbotron text-center">
+                <h1>Mon Blog</h1>
+                <p>La visite de l'imaginaire</p>
+            </div>
+        </div>
+        <div class="col">
+            <?php echo $content_for_layout; ?>
+        </div>
+    </div>
 </main>
 
 <footer class="footer mt-5">
-    <div class="container">
+    <div class="container text-center">
         <span class="text-muted">Copyright &copy&copy; Blog de Jean Forteroche</span>
     </div>
 </footer>
 
 <script src="/public/login/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="/public/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+
 <script src="/public/js/main.js" type="text/javascript"></script>
 
 </body>
