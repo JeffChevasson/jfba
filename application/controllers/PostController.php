@@ -6,6 +6,8 @@ use application\models\Post;
 use core\Controller;
 use core\ModelManager;
 
+//require(ROOT."/application/models/Post.php");
+
 class PostController extends Controller {
 
     protected $layout = "frontend";
@@ -52,5 +54,22 @@ class PostController extends Controller {
         $data["post"] = ModelManager::findOne(Post::class, array("id" => $post_id));
         $this->set($data);
         $this->render("edit");
+    }
+
+    /**
+     * Affichage la page de creation d'un nouvel article (uniquement en admin)
+     */
+    public function create(){
+        require(ROOT."/application/models/Post.php");
+        if (array_key_exists("doCreate", $_POST)){
+            $post = new Post();
+            $data = array(
+                "title" => $_POST["title"],
+                "content" => $_POST["content"]
+            );
+            $post->save($data);
+            header("Location: /admin/posts");
+        }
+        $this->render("create");
     }
 }

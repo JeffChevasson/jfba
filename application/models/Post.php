@@ -3,6 +3,9 @@ namespace application\models;
 
 use core\Model;
 
+// methode utilitaire
+require(ROOT."/application/utils/truncateHTML.php");
+
 class Post extends Model {
 
     protected $_tablename = "posts";
@@ -28,6 +31,11 @@ class Post extends Model {
     private $creationDate;
 
     /**
+     * @var \DateTime
+     */
+    private $modificationDate;
+
+    /**
      * @return \DateTime
      */
     public function getCreationDate()
@@ -42,6 +50,24 @@ class Post extends Model {
     public function setCreationDate($creationDate)
     {
         $this->creationDate = \DateTime::createFromFormat("Y-m-d H:i:s", $creationDate);
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getModificationDate()
+    {
+        return $this->modificationDate;
+    }
+
+    /**
+     * @param \DateTime $modificationDate
+     * @return Post
+     */
+    public function setModificationDate($modificationDate)
+    {
+        $this->modificationDate = \DateTime::createFromFormat("Y-m-d H:i:s", $modificationDate);
         return $this;
     }
 
@@ -114,12 +140,7 @@ class Post extends Model {
     /**
      * Methode pour obtenir un résumé court de l'article
      */
-    public function getSumary(){
-        if (strlen($this->getContent()) > 50) {
-            $content = substr($this->getContent(), 0, 600);
-            $dernier_mot = strrpos($content, "");
-            return substr($content, 0, $dernier_mot);
-        }
-        return $this->content;
+    public function getSumary($length){
+        return truncateHTML($length, $this->content);
     }
 }

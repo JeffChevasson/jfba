@@ -12,7 +12,7 @@ class LogoutController extends Controller {
      */
     public function index(){
         unset($_SESSION["username"]);
-        //session_destroy();
-        header("Location : /login/index");
+        session_destroy();
+        header("Location: /login/index");
     }
 }

@@ -33,7 +33,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <?php if (isset($_SESSION["username"])){ ?>
-                <a class="btn btn-primary offset-10 mr-2" href="/admin">
+                <a class="btn btn-primary offset-10 mr-2" href="/admin/posts">
                     <i class="fa fa-gears"></i> Administration
                 </a>
                 <a class="btn btn-danger" href="/logout/index">
@@ -51,11 +51,11 @@
 <main role="main" class="container-fluid">
     <div class="row">
         <div class="col-3">
-            <div class="card">
+            <div class="card text-white bg-secondary">
                 <img class="card-img-top" src="/public/img/index-img.jpg" alt="Card image cap">
                 <div class="card-body">
                     <h1 class="card-title text-center">Mon Blog</h1>
-                    <h2 class="card-text text-center text-muted">
+                    <h2 class="card-text text-center">
                         La visite de l'imaginaire
                     </h2>
                 </div>
@@ -76,8 +76,11 @@
 <script src="/public/login/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="/public/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- include summernote css/js -->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+
+<!-- bootbox -->
+<script src="/public/libs/bootbox/bootbox.all.min.js" type="text/javascript"></script>
 
 <script src="/public/js/main.js" type="text/javascript"></script>
 

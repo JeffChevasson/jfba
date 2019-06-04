@@ -17,7 +17,7 @@
     </div>
     <div class="form-group">
         <label for="commentaire">Contenu</label>
-        <textarea id="summernote" rows="20" class="form-control" name="content" required="true"><?= $post->getContent(); ?></textarea>
+        <textarea id="summernote" style="height: 150px;" class="form-control" name="content" required="true"><?= $post->getContent(); ?></textarea>
     </div>
     <div class="row bg-light p-2">
         <a href="/admin/posts" class="btn btn-danger mr-2">Retour à la liste des articles</a>
