@@ -1,6 +1,6 @@
 <?php
     if (isset($post)){
-        $action = "/post/edit";
+        $action = "/post/xhrEdit/".$post->getId();
         $nameBtn = "doEdit";
     }else{
         $action = "/post/create";
@@ -9,7 +9,8 @@
     }
 ?>
 
-<form action="<?= $action; ?>" method="post">
+<form action="<?= $action; ?>" method="post" id="form_post">
+    <input type="hidden" id="postId" value="<?= $post->getId(); ?>" />
     <div class="form-group">
         <label for="titre">Titre</label>
         <input type="text" class="form-control" id="titre" aria-describedby="titreHelp"
@@ -21,6 +22,6 @@
     </div>
     <div class="row bg-light p-2">
         <a href="/admin/posts" class="btn btn-danger mr-2">Retour à la liste des articles</a>
-        <button type="submit" name="<?= $nameBtn; ?>" class="btn btn-success">Valider</button>
+        <button id="btn-post" type="submit" name="<?= $nameBtn; ?>" class="btn btn-edit-post btn-success">Valider</button>
     </div>
 </form>

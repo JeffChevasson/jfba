@@ -1,6 +1,6 @@
 <div class="row mb-3 bg-light p-2">
     <div class="col-10">
-        <h3 class="text-info">Les articles du blog</h3>
+        <h3 class="text-primary">Les articles du blog</h3>
     </div>
     <div class="col">
         <a href="/post/create" class="btn btn-success">
@@ -29,12 +29,21 @@
         <td></td>
     </tr>
     <tr class="bg-light">
+        <?php
+            $nbCommsSignales = 0;
+            if (in_array($post->getId(), array_keys($stats_posts))){
+                $nbCommsSignales = $stats_posts[$post->getId()];
+            };
+        ?>
         <td colspan="5" class="float-r">
             <a href="/post/edit/<?= $post->getId(); ?>" class="btn btn-primary" title="Editer article <?= $post->getId(); ?>">
                 <i class="fa fa-edit"></i>
             </a>
             <a href="/post/delete/<?= $post->getId(); ?>" class="btn btn-danger btn-delete-post" title="Supprimer article <?= $post->getId(); ?>">
                 <i class="fa fa-trash"></i>
+            </a>
+            <a href="#" class="btn btn-danger">
+                Commentaires signalés (<?= $nbCommsSignales ?>)
             </a>
         </td>
     </tr>

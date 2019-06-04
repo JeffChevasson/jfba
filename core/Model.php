@@ -63,20 +63,21 @@ class Model{
     /**
      * Methode de mise a jour de notre objet
      */
-    public function update(){
+    public function update($data){
         $cols = $this->getTableCols();
-        $attrs = array();
 
-        $primaryKeyColValue = $attrs[$this->_primarykey];
-        unset($this->_primarykey);
+        //$arrayValues = array_values($data);
+        $pkeyValue = $data[$this->_primarykey];
 
-        $arrayValues = array_values($attrs);
-        array_walk($arrayValues, function(&$value, $key){
-            $value = "{$key} = '{$value}'";
-        });
+        $vals = array();
+        foreach ($data as $key => $value){
+            if (in_array($key, $cols)) {
+                $vals[] = " $key='$value' ";
+            }
+        }
 
-        $sUpdate = implode(", ", array_values($arrayValues));
-        $sql = " UPDATE ".$this->_tablename." SET {$sUpdate} WHERE ".$this->_primarykey."= `$primaryKeyColValue` ";
+        $sUpdate = implode(", ", $vals);
+        $sql = "UPDATE ".$this->_tablename." SET {$sUpdate} WHERE ".$this->_primarykey."='$pkeyValue' ";
         return SQLConnection::getInstance()->query($sql);
     }
 

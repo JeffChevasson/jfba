@@ -3,8 +3,7 @@ namespace application\controllers;
 
 use application\models\Comment;
 use core\Controller;
-
-require(ROOT."/application/models/Comment.php");
+use core\ModelManager;
 
 class CommentController extends Controller {
 
@@ -22,5 +21,17 @@ class CommentController extends Controller {
         $comment = new Comment();
         $comment_id = $comment->save($data);
         header( "Location: /post/show/".$post_id);
+    }
+
+    /**
+     * Permet de signaler un commentaire indésirable
+     */
+    public function signaler($comment_id){
+        $comment = ModelManager::findOne(Comment::class, array("id" => $comment_id));
+        $comment->update(array(
+            "id" => $comment_id, "repport" => (new \DateTime())->format("Y-m-d H:i:s"),
+            "display" => 0
+        ));
+        echo "Votre signalement a été pris en compte";
     }
 }

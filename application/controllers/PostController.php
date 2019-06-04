@@ -17,7 +17,7 @@ class PostController extends Controller {
      */
     public function show($post_id){
         $data["post"] = ModelManager::findOne(Post::class, array("id" => $post_id));
-        $data["comments"] = ModelManager::find(Comment::class, array("post_id" => $post_id));
+        $data["comments"] = ModelManager::find(Comment::class, array("post_id" => $post_id, "display" => 1));
         $this->set($data);
         $this->render("show");
     }
@@ -36,15 +36,35 @@ class PostController extends Controller {
      * Permet d'afficher la page d'édition d'un article et aussi de les modifier (uniquement en admin)
      */
     public function edit($post_id){
-        if (!array_key_exists("doEdit", $_REQUEST) && !array_key_exists("doCreate", $_REQUEST)) {
-            $data["post"] = ModelManager::findOne(Post::class, array("id" => $post_id));
-            $this->set($data);
-            $this->render("edit");
-        }
+        //if (!array_key_exists("doEdit", $_REQUEST) && !array_key_exists("doCreate", $_REQUEST)) {
+        $data["post"] = ModelManager::findOne(Post::class, array("id" => $post_id));
+        $this->set($data);
+        $this->render("edit");
 
-        if (array_key_exists("doEdit", $_REQUEST)) {
-            $data["post"] = ModelManager::findOne(Post::class, array("id" => $post_id));
-        }
+        /*if (array_key_exists("doEdit", $_REQUEST)) {
+            $post = ModelManager::findOne(Post::class, array("id" => $post_id));
+            $data_post = array(
+                "title" => $_REQUEST["title"],
+                "content" => $_REQUEST["content"],
+                "modification_date" => (new \DateTime())->format("Y-m-d H:i:s")
+            );
+            $post->update($post_id, $data_post);
+            header("Location: /post/edit/$post_id");
+        }*/
+    }
+
+    /**
+     * Permet d'editer un post avec l'aide ajax
+     */
+    public function xhredit($post_id){
+        $post = ModelManager::findOne(Post::class, array("id" => $post_id));
+        $data_post = array(
+            "title" => str_replace("'", " ", $_REQUEST["title"]),
+            "content" => str_replace("'", " ", $_REQUEST["content"]),
+            "modification_date" => (new \DateTime())->format("Y-m-d H:i:s")
+        );
+        $post->update($post_id, $data_post);
+        echo "LLL";
     }
 
     /**

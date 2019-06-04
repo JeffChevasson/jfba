@@ -16,16 +16,18 @@
 </div>
 
 <?php if (count($comments) > 0){ ?>
-    <h4>
-        <em>Les commentaires des utilisateurs: </em>
-    </h4>
+<div class="row mb-3 bg-light p-2">
+    <h4 class="text-primary">Les commentaires des utilisateurs</h4>
+</div>
 <?php foreach ($comments as $comment){ ?>
     <?php $head = "<strong>".($comment->getAuthor())."</strong> le ".$comment->getCommentDate()->format("d/m/Y H:i:s"); ?>
     <div class="card mb-5">
+        <div class="card-header"><?= $head ?></div>
         <div class="card-body">
-            <h5 class="card-title"><?= $head ?></h5>
-            <?= nl2br($comment->getComment()) ?>
-            <a href="/post/show/<?= $post->getId(); ?>" class="btn btn-danger">Signaler</a>
+            <em><?= nl2br($comment->getComment()) ?></em>
+        </div>
+        <div class="card-footer text-muted text-right">
+            <a data-postid="<?= $post->getId(); ?>" href="/comment/signaler/<?= $comment->getId(); ?>" class="btn btn-danger btn-signaler-comment">Signaler</a>
         </div>
     </div>
 
@@ -45,8 +47,8 @@
 </div>
     <?php }; ?>
 
-<h4>
-    <em>Ajouter votre commentaire</em>
-</h4>
+<div class="row mb-3 bg-light p-2">
+    <h4 class="text-primary">Ajouter votre commentaire</h4>
+</div>
 
 <?php include_once "form_comment.php"; ?>
