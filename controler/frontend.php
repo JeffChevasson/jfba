@@ -22,6 +22,9 @@ function post()
 function addComment($postId, $author, $comment)
 {
     $commentManager = new CommentManager();
+    $postId = $_GET["id"];
+    $author = $_POST["author"];
+    $comment = trim($_POST["comment"]);
     $affectedLines = $commentManager->postComment($postId, $author, $comment);
     
     header('Location: index.php?action=post&id=' . $postId);

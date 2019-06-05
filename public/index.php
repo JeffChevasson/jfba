@@ -1,6 +1,6 @@
 <?php
 // Initialisation de notre session
-session_start();
+/*session_start();
 
 
 require ('controler/frontend.php');
@@ -14,8 +14,8 @@ if (! empty($_GET['action'])) {
 
 switch ($action) {
         // liste tous les billets
-    case 'listPosts':
-        listPosts();
+    case 'posts':
+        displayPosts();
         break;
         
         // rajoute un commentaire a un billet
@@ -100,4 +100,5 @@ switch ($action) {
     default:
         listPosts();
         break;
-}
+}*/
+
