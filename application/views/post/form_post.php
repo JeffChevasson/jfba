@@ -1,12 +1,11 @@
 <?php
     if (isset($post)){
-        $action = "/post/xhrEdit/".$post->getId();
+        $action = "/post/xhredit/".$post->getId();
         $nameBtn = "doEdit";
-    }else{
-        $action = "/post/create";
+    }/*else{
+        $action = "/post/xhrcreate";
         $nameBtn = "doCreate";
-        $post = new \application\models\Post();
-    }
+    }*/
 ?>
 
 <form action="<?= $action; ?>" method="post" id="form_post">
@@ -22,6 +21,10 @@
     </div>
     <div class="row bg-light p-2">
         <a href="/admin/posts" class="btn btn-danger mr-2">Retour à la liste des articles</a>
-        <button id="btn-post" type="submit" name="<?= $nameBtn; ?>" class="btn btn-edit-post btn-success">Valider</button>
+        <?php if (isset($post) && !empty($post->getId())){ ?>
+            <button id="btn-post" type="submit" name="<?= $nameBtn; ?>" class="btn btn-edit-post btn-success">Valider</button>
+        <?php }else{ ?>
+            <button id="btn-post" type="submit" name="<?= $nameBtn; ?>" class="btn btn-save-post btn-success">Valider</button>
+        <?php }; ?>
     </div>
 </form>

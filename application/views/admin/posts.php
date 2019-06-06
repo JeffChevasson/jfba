@@ -14,36 +14,43 @@
         <tr>
             <th>Id</th>
             <th>Titre</th>
-            <th>Contenu</th>
+            <th class="w-50">Contenu</th>
             <th>Date de création</th>
             <th>Date de modification</th>
         </tr>
     </thead>
     <tbody>
     <?php foreach ($posts as $post){ ?>
-    <tr>
+    <tr class="tr-admin-post-<?= $post->getId(); ?>">
         <th scope="row"><?= $post->getId(); ?></th>
         <td><?= $post->getTitle(); ?></td>
-        <td><?= $post->getSumary(500); ?></td>
+        <td><?= $post->getSumary(250); ?></td>
         <td><?= $post->getCreationDate()->format("d/m/Y H:i"); ?></td>
-        <td></td>
+        <td>
+            <?php
+                if ($post->getModificationDate()){
+                    echo $post->getModificationDate()->format("d/m/Y H:i");
+                }else{
+                    echo "--";
+                }
+                ?>
+        </td>
     </tr>
-    <tr class="bg-light">
+    <tr class="bg-light tr-admin-post-<?= $post->getId(); ?>">
         <?php
-            $nbCommsSignales = 0;
-            if (in_array($post->getId(), array_keys($stats_posts))){
-                $nbCommsSignales = $stats_posts[$post->getId()];
-            };
+            $nbCommsSignales = count($stats_posts[$post->getId()]);
         ?>
         <td colspan="5" class="float-r">
-            <a href="/post/edit/<?= $post->getId(); ?>" class="btn btn-primary" title="Editer article <?= $post->getId(); ?>">
-                <i class="fa fa-edit"></i>
-            </a>
-            <a href="/post/delete/<?= $post->getId(); ?>" class="btn btn-danger btn-delete-post" title="Supprimer article <?= $post->getId(); ?>">
-                <i class="fa fa-trash"></i>
-            </a>
-            <a href="#" class="btn btn-danger">
+            <?php if ($nbCommsSignales > 0){ ?>
+            <a href="/post/showsignales/<?= $post->getId(); ?>" class="btn btn-warning">
                 Commentaires signalés (<?= $nbCommsSignales ?>)
+            </a>
+            <?php }; ?>
+            <a href="/post/edit/<?= $post->getId(); ?>" class="btn btn-primary" title="Editer article <?= $post->getId(); ?>">
+                <i class="fa fa-edit"></i> Modifier
+            </a>
+            <a href="/post/delete/<?= $post->getId(); ?>" data-postid="<?= $post->getId(); ?>" class="btn btn-danger btn-delete-post" title="Supprimer article <?= $post->getId(); ?>">
+                <i class="fa fa-trash"></i> Supprimer
             </a>
         </td>
     </tr>

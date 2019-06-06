@@ -23,6 +23,18 @@ class PostController extends Controller {
     }
 
     /**
+     * Affiche la liste des commentaires signales par les utilisateurs
+     */
+    public function showsignales($post_id){
+        $commentairesSignales = ModelManager::find(Comment::class, array("display" => 0,
+            "post_id" => $post_id));
+        $post = ModelManager::findOne(Post::class, array("id" => $post_id));
+        $data = array("comments" => $commentairesSignales, "post" => $post);
+        $this->set($data);
+        $this->render("commentaires_signales");
+    }
+
+    /**
      * Permet de supprimer un post ainsi que ses commentaires (uniquement en admin)
      */
     public function delete($post_id){
@@ -40,17 +52,6 @@ class PostController extends Controller {
         $data["post"] = ModelManager::findOne(Post::class, array("id" => $post_id));
         $this->set($data);
         $this->render("edit");
-
-        /*if (array_key_exists("doEdit", $_REQUEST)) {
-            $post = ModelManager::findOne(Post::class, array("id" => $post_id));
-            $data_post = array(
-                "title" => $_REQUEST["title"],
-                "content" => $_REQUEST["content"],
-                "modification_date" => (new \DateTime())->format("Y-m-d H:i:s")
-            );
-            $post->update($post_id, $data_post);
-            header("Location: /post/edit/$post_id");
-        }*/
     }
 
     /**
@@ -59,12 +60,12 @@ class PostController extends Controller {
     public function xhredit($post_id){
         $post = ModelManager::findOne(Post::class, array("id" => $post_id));
         $data_post = array(
+            "id" => $post_id,
             "title" => str_replace("'", " ", $_REQUEST["title"]),
             "content" => str_replace("'", " ", $_REQUEST["content"]),
             "modification_date" => (new \DateTime())->format("Y-m-d H:i:s")
         );
-        $post->update($post_id, $data_post);
-        echo "LLL";
+        $post->update($data_post);
     }
 
     /**
@@ -80,16 +81,26 @@ class PostController extends Controller {
      * Affichage la page de creation d'un nouvel article (uniquement en admin)
      */
     public function create(){
-        require(ROOT."/application/models/Post.php");
-        if (array_key_exists("doCreate", $_POST)){
-            $post = new Post();
-            $data = array(
-                "title" => $_POST["title"],
-                "content" => $_POST["content"]
-            );
-            $post->save($data);
-            header("Location: /admin/posts");
-        }
+        $data = array(
+            "action" => "/post/create",
+            "post" => new Post(),
+            "nameBtn" => "doCreate"
+        );
+        $this->set($data);
         $this->render("create");
+    }
+
+    /**
+     * Permet d'ajouter un post avec l'aide ajax
+     */
+    public function xhrcreate(){
+        require(ROOT."/application/models/Post.php");
+        $post = new Post();
+        $data_post = array(
+            "title" => str_replace("'", " ", $_REQUEST["title"]),
+            "content" => str_replace("'", " ", $_REQUEST["content"]),
+            "creation_date" => (new \DateTime())->format("Y-m-d H:i:s")
+        );
+        $post->save($data_post);
     }
 }

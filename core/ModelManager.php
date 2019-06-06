@@ -65,29 +65,9 @@ class ModelManager{
     }
 
     /**
-     * Methode pour recuperer les attributs et les valeurs de la classe sauf ceux commencant par _
-     */
-    /*public static function getAttributes($class){
-        $entity = new $class;
-        $data = array();
-        $arr = get_class_vars($class);
-        foreach ($arr as $item => $value){
-            if (strpos($item, "_") >= 0){
-                continue;
-            }
-            // convertit les attributs du genre monAttr en mon_attr
-            //$item = strtolower(preg_replace(['/([a-z\d])([A-Z])/', '/([^_])([A-Z][a-z])/'], '$1_$2', $item));
-            $item = str_replace($item, '', ucwords($item, "_"));
-            $data[$item] = $value;
-        }
-        return $data;
-    }*/
-
-    /**
      * Methode de selection des objets de la table
      */
     private static function select($class, array $criteria, array $order){
-        require($class.".php");
         $entity = new $class();
         $cols = $entity->getTableCols();
         $selSQL = "select ".implode(",", $cols)." from ". $entity->getTableName();

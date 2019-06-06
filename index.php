@@ -8,6 +8,11 @@ define('WEBROOT', str_replace("index.php", "", $_SERVER["SCRIPT_NAME"]));
 define('ROOT', str_replace("index.php", "", $_SERVER["SCRIPT_FILENAME"]));
 
 require(ROOT."/core/Model.php");
+
+require(ROOT."/application/models/Post.php");
+require(ROOT."/application/models/Member.php");
+require(ROOT."/application/models/Comment.php");
+
 require(ROOT."/core/ModelManager.php");
 require(ROOT."/core/SQLConnection.php");
 
