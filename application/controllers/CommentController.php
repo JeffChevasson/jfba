@@ -13,16 +13,15 @@ class CommentController extends Controller
     /**
      * Permet de creer un nouveau commentaire a un post
      */
-    public function create()
+    public function xhrcreate()
     {
         // on recupere les donnees du formulaire HTML
-        $post_id              = $_REQUEST["post_id"];
         $data                 = $_REQUEST;
         $data["comment_date"] = (new \DateTime())->format("Y-m-d H:i:s");
         // on enregistre le commentaire en BDD
         $comment    = new Comment();
         $comment_id = $comment->save($data);
-        header("Location: /post/show/" . $post_id);
+        echo "Votre commentaire a bien été pris en compte";
     }
 
     /**
@@ -50,5 +49,14 @@ class CommentController extends Controller
         ));
         echo "Le commentaire est de nouveau visible sur l'article";
     }
+    /**
+     * Permet de supprimer dans la BDD un commentaire indésirable
+     */
+    public function supprimer($comment_id)
+        {
+            ModelManager::delete(Comment::class, array("id" => $comment_id));
 
+            echo "Le commentaire a été bien supprimé !";
+            
+        }
 }

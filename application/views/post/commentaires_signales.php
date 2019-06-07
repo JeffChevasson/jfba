@@ -3,7 +3,7 @@
     <h3 class="col-10">
         Modération de l'article <em><?= $post->getTitle(); ?></em>
     </h3>
-    <a href="/admin/posts" class="btn btn-danger">Retour a la liste des articles</a>
+    <a href="<?= BASE_URL ?>admin/posts" class="btn btn-danger">Retour a la liste des articles</a>
 </div>
 <p>
     Ci-dessous les commentaires <strong class="text-warning">signalés</strong> par des utilisateurs
@@ -16,8 +16,11 @@
             <em><?= nl2br($comment->getComment()) ?></em>
         </div>
         <div class="card-footer text-muted text-right">
-            <a data-commentid="<?= $comment->getId(); ?>" href="/comment/autoriser/<?= $comment->getId(); ?>" class="btn btn-success btn-autoriser-comment">
-                Approuver et Publier
+            <a data-commentid="<?= $comment->getId(); ?>" href="<?= BASE_URL ?>comment/supprimer/<?= $comment->getId(); ?>" class="btn btn-danger btn-supprimer-comment">
+                <i class="fa fa-trash"></i> Supprimer
+            </a>
+            <a data-commentid="<?= $comment->getId(); ?>" href="<?= BASE_URL ?>comment/autoriser/<?= $comment->getId(); ?>" class="btn btn-success btn-autoriser-comment">
+                <i class="fa fa-cert"></i> Approuver et Publier
             </a>
         </div>
     </div>

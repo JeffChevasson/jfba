@@ -1,5 +1,5 @@
-<form action="/comment/create" method="post">
-    <input type="hidden" name="post_id" value="<?= $post->getId(); ?>" />
+<form action="<?= BASE_URL ?>comment/xhrcreate" method="post" id="form_comment">
+    <input type="hidden" id="postId" name="post_id" value="<?= $post->getId(); ?>" />
     <div class="form-group">
         <label for="auteur">Auteur</label>
         <input type="text" class="form-control" id="author" aria-describedby="authorHelp"
@@ -10,6 +10,6 @@
         <textarea id="summernote" class="form-control" name="comment" required="true"></textarea>
     </div>
     <div class="row bg-light p-2">
-        <button type="submit" class="btn btn-success">Valider</button>
+        <button data urlret="<?= BASE_URL ?>post/show/<?= $post->getId(); ?>"" id="btn-comment" type="submit" class="btn btn-add-comment btn-success">Valider</button>
     </div>
 </form>

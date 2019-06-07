@@ -7,6 +7,17 @@ use core\Dispatcher;
 define('WEBROOT', str_replace("index.php", "", $_SERVER["SCRIPT_NAME"]));
 define('ROOT', str_replace("index.php", "", $_SERVER["SCRIPT_FILENAME"]));
 
+$uri = explode("/", $_SERVER['REQUEST_URI']);
+if ((count($uri) > 1) && empty($uri[2])){
+    if (!array_key_exists("username", $_SESSION)) {
+        header("Location: accueil/index");
+    }else{
+        header("Location: admin/posts");
+    }
+}
+
+$base_url = "http://".$_SERVER['SERVER_NAME']."/".$uri[1]."/";
+
 require(ROOT."/core/Model.php");
 
 require(ROOT."/application/models/Post.php");

@@ -3,7 +3,7 @@
         <h3 class="text-primary">Les articles du blog</h3>
     </div>
     <div class="col">
-        <a href="/post/create" class="btn btn-success">
+        <a href="/$<?= BASE_URL ?>post/create" class="btn btn-success">
             <i class="fa fa-plus"></i> Nouvel article
         </a>
     </div>
@@ -42,14 +42,14 @@
         ?>
         <td colspan="5" class="float-r">
             <?php if ($nbCommsSignales > 0){ ?>
-            <a href="/post/showsignales/<?= $post->getId(); ?>" class="btn btn-warning">
+            <a href="<?= BASE_URL ?>post/showsignales/<?= $post->getId(); ?>" class="btn btn-warning">
                 Commentaires signalés (<?= $nbCommsSignales ?>)
             </a>
             <?php }; ?>
-            <a href="/post/edit/<?= $post->getId(); ?>" class="btn btn-primary" title="Editer article <?= $post->getId(); ?>">
+            <a href="<?= BASE_URL ?>post/edit/<?= $post->getId(); ?>" class="btn btn-primary" title="Editer article <?= $post->getId(); ?>">
                 <i class="fa fa-edit"></i> Modifier
             </a>
-            <a href="/post/delete/<?= $post->getId(); ?>" data-postid="<?= $post->getId(); ?>" class="btn btn-danger btn-delete-post" title="Supprimer article <?= $post->getId(); ?>">
+            <a href="<?= BASE_URL ?>post/delete/<?= $post->getId(); ?>" data-postid="<?= $post->getId(); ?>" class="btn btn-danger btn-delete-post" title="Supprimer article <?= $post->getId(); ?>">
                 <i class="fa fa-trash"></i> Supprimer
             </a>
         </td>

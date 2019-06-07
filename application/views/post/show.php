@@ -8,7 +8,7 @@
 </div>
 
 <div class="row bg-light p-2 mb-5">
-    <a href="/accueil/index">
+    <a href="<?= BASE_URL ?>accueil/index">
         <button type="button" class="btn btn-info">
             Retour à la liste des billets
         </button>
@@ -26,8 +26,9 @@
         <div class="card-body">
             <em><?= nl2br($comment->getComment()) ?></em>
         </div>
-        <div class="card-footer text-muted text-right">
-            <a data-postid="<?= $post->getId(); ?>" href="/comment/signaler/<?= $comment->getId(); ?>" class="btn btn-danger btn-signaler-comment">Signaler</a>
+         <div class="card-footer text-muted text-right">
+            <a data-postid="<?= $post->getId(); ?>" href="<?= BASE_URL; ?>comment/signaler/<?= $comment->getId(); ?>"
+               data-urlret="<?= BASE_URL; ?>post/show/<?= $post->getId(); ?>" class="btn btn-danger btn-signaler-comment">Signaler</a>
         </div>
     </div>
 

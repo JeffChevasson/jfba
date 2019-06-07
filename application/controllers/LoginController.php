@@ -34,7 +34,7 @@ class LoginController extends Controller {
         }else{
             $_SESSION["username"] = $member->getPseudo();
             $this->set($data);
-            header("Location: /admin/posts");
+            header("Location: ".BASE_URL."admin/posts");
         }
 
     }

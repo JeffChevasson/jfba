@@ -1,4 +1,4 @@
-<form action="/login/authenticate" method="post" name="Login_Form" class="form-signin">
+<form action="<?= BASE_URL ?>login/authenticate" method="post" name="Login_Form" class="form-signin">
     <h3 class="form-signin-heading">Administration du blog</h3>
     <hr class="colorgraph"><br>
 

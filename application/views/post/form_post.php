@@ -1,11 +1,11 @@
 <?php
-    if (isset($post)){
-        $action = "/post/xhredit/".$post->getId();
+    if (isset($post)&& !empty($post->getId())){
+        $action = BASE_URL."post/xhredit/".$post->getId();
         $nameBtn = "doEdit";
-    }/*else{
-        $action = "/post/xhrcreate";
+    }else{
+        $action = BASE_URL."post/xhrcreate";
         $nameBtn = "doCreate";
-    }*/
+    }
 ?>
 
 <form action="<?= $action; ?>" method="post" id="form_post">
@@ -20,11 +20,11 @@
         <textarea id="summernote" style="height: 150px;" class="form-control" name="content" required="true"><?= $post->getContent(); ?></textarea>
     </div>
     <div class="row bg-light p-2">
-        <a href="/admin/posts" class="btn btn-danger mr-2">Retour à la liste des articles</a>
+        <a href="<?= BASE_URL ?>admin/posts" class="btn btn-danger mr-2">Retour à la liste des articles</a>
         <?php if (isset($post) && !empty($post->getId())){ ?>
-            <button id="btn-post" type="submit" name="<?= $nameBtn; ?>" class="btn btn-edit-post btn-success">Valider</button>
+            <button data-urlret="<?= BASE_URL ?>admin/posts" id="btn-post" type="submit" name="<?= $nameBtn; ?>" class="btn btn-edit-post btn-success">Valider</button>
         <?php }else{ ?>
-            <button id="btn-post" type="submit" name="<?= $nameBtn; ?>" class="btn btn-save-post btn-success">Valider</button>
+            <button data-urlret="<?= BASE_URL ?>admin/posts" id="btn-post" type="submit" name="<?= $nameBtn; ?>" class="btn btn-save-post btn-success">Valider</button>
         <?php }; ?>
     </div>
 </form>

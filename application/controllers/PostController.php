@@ -41,7 +41,7 @@ class PostController extends Controller {
         // on supprime les commentaires, puis l'article en lui meme
         $comment = ModelManager::delete(Comment::class, array("post_id" => $post_id));
         $post = ModelManager::delete(Post::class, array("id" => $post_id));
-        header("Location: /admin/posts");
+        header("Location: ".BASE_URL."admin/posts");
     }
 
     /**
@@ -82,7 +82,7 @@ class PostController extends Controller {
      */
     public function create(){
         $data = array(
-            "action" => "/post/create",
+            "action" => BASE_URL."post/create",
             "post" => new Post(),
             "nameBtn" => "doCreate"
         );
@@ -94,7 +94,7 @@ class PostController extends Controller {
      * Permet d'ajouter un post avec l'aide ajax
      */
     public function xhrcreate(){
-        require(ROOT."/application/models/Post.php");
+        //require(ROOT."/application/models/Post.php");
         $post = new Post();
         $data_post = array(
             "title" => str_replace("'", " ", $_REQUEST["title"]),
